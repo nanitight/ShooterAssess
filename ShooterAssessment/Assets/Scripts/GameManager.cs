@@ -1,5 +1,5 @@
 using GN.ShooterAssessment.ObserverPatter;
-using System.Collections;
+using GN.ShooterAssessment.ScriptTags;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -20,6 +20,7 @@ namespace GN.ShooterAssessment
             EnemyManager.OnEnemyDestroyed += IncreaseScoreByOne;
             OnMaxScoreReached += PlayerSubject.SetTotalTimeTaken;
             OnMaxScoreReached += MoveToTheNextGameView;
+            OnMaxScoreReached += ()=> PlayerSubject.SetMaxReached(true);
             OnStartGame += MoveToTheNextGameView;
             OnStartGame += PlayerSubject.Reset;
             UiObserver.Init(PlayerSubject);

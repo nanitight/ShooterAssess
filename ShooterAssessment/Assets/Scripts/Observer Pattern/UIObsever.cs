@@ -10,6 +10,7 @@ namespace GN.ShooterAssessment.ObserverPatter
         private ConcreteSubject subject;
         public TextMeshProUGUI scoreText;
         public TextMeshProUGUI timeText;
+        public TextMeshProUGUI totalTime;
 
         public override void Update()
         {
@@ -21,6 +22,11 @@ namespace GN.ShooterAssessment.ObserverPatter
             if (timeText != null)
             {
                 timeText.text = subject.TimeSpan.ToString(@"dd\.hh\:mm\:ss");
+            }
+
+            if (totalTime != null && subject.MaxReached)
+            {
+                totalTime.text = subject.TimeTaken.ToString(@"dd\:hh\:mm\:ss")+ " days";
             }
         }
 

@@ -14,6 +14,9 @@ namespace GN.ShooterAssessment.ObserverPatter
         public TimeSpan TimeTaken { get {  return timeTaken; } }
         public TimeSpan TimeSpan { get { return timeSpan; } }
 
+        private bool maxReached = false;
+        public bool MaxReached { get { return maxReached; } }
+
         public void SetScore(int score)
         {
             this.score = score;
@@ -29,12 +32,20 @@ namespace GN.ShooterAssessment.ObserverPatter
         public void SetTotalTimeTaken()
         {
             timeTaken = new TimeSpan(timeSpan.Ticks);
+            Notify();
         }
 
         public void Reset()
         {
             SetScore(0);
+            SetMaxReached(false);
             timeSpan = new TimeSpan();
+        }
+
+        public void SetMaxReached(bool maxReached)
+        {
+            this.maxReached = maxReached;
+            Notify();
         }
     }
 }
