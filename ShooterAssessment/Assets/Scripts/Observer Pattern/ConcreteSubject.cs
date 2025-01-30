@@ -30,5 +30,11 @@ namespace GN.ShooterAssessment.ObserverPatter
         {
             timeTaken = new TimeSpan(timeSpan.Ticks);
         }
+
+        public void Reset()
+        {
+            SetScore(0);
+            timeSpan = new TimeSpan();
+        }
     }
 }

@@ -21,6 +21,7 @@ namespace GN.ShooterAssessment
             OnMaxScoreReached += PlayerSubject.SetTotalTimeTaken;
             OnMaxScoreReached += MoveToTheNextGameView;
             OnStartGame += MoveToTheNextGameView;
+            OnStartGame += PlayerSubject.Reset;
             UiObserver.Init(PlayerSubject);
             if (gameViews.Count > 0 )
             {
@@ -65,7 +66,7 @@ namespace GN.ShooterAssessment
         {
             if (currentGameView != null)
             {                
-               currentGameView.SwitchNext();
+              currentGameView =  currentGameView.SwitchNext();
             }
         }
 

@@ -2,23 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameView : MonoBehaviour
+namespace GN.ShooterAssessment.ScriptTags
 {
-    public GameView Next;
-
-    public void SwitchNext()
+    public class GameView : MonoBehaviour
     {
-        TurnOff();
-        Next.TurnOn();
-    }
+        public GameView Next;
 
-    public void TurnOn()
-    {
-        gameObject.SetActive(true);
-    }
+        public GameView SwitchNext()
+        {
+            TurnOff();
+            Next.TurnOn();
+            return Next;
+        }
 
-    public void TurnOff()
-    {
-        gameObject.SetActive(false);
+        public void TurnOn()
+        {
+            gameObject.SetActive(true);
+        }
+
+        public void TurnOff()
+        {
+            gameObject.SetActive(false);
+        }
     }
 }
