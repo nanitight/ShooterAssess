@@ -255,7 +255,7 @@ LineRenderer:
     shadowBias: 0.5
     generateLightingData: 0
   m_MaskInteraction: 0
-  m_UseWorldSpace: 0
+  m_UseWorldSpace: 1
   m_Loop: 0
   m_ApplyActiveColorSpace: 1
 --- !u!1 &817898615
@@ -366,7 +366,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lineRenderer: {fileID: 598888303}
   lineMaxDistance: 100
-  MouseSensitivity: 100
+  MouseSensitivity: 3
   xRotationLimit: 15
   yRotationLimit: 45
   maxTimerForShooting: 0.5

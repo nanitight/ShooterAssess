@@ -33,6 +33,8 @@ namespace GN.ShooterAssessment
             TurnLineToColor(lineRenderer, Color.green);
             SetLineWidth(lineRenderer, lineStartWidth);
         }
+
+        float newXRotation = 0 , newYRotation = 0 ;
         void Update()
         {
             /*
@@ -45,22 +47,23 @@ namespace GN.ShooterAssessment
             {
                 float mouseX = Input.GetAxis("Mouse X");
                 float mouseY = Input.GetAxis("Mouse Y");
-                float tempXRotation = transform.eulerAngles.x + (MouseSensitivity * Time.deltaTime + mouseY);
-                float newXRotation = tempXRotation >= xRotationLimit ? 0 : tempXRotation;
-                float tempYRotation = transform.eulerAngles.y + (MouseSensitivity * Time.deltaTime + mouseX);
-                float newYRotation = tempYRotation >= yRotationLimit ? 0 : tempYRotation;
-                //Vector3 newRotation = new Vector3(newXRotation, newYRotation, transform.eulerAngles.z);
-                //transform.eulerAngles = newRotation;
-                transform.Rotate(newXRotation, newYRotation, 0);
+
+                float tempYRotation = (MouseSensitivity * mouseY);
+                float tempXRotation = (MouseSensitivity * mouseX);
+
+                newXRotation = Mathf.Clamp(newXRotation - tempYRotation, -xRotationLimit, xRotationLimit);
+                newYRotation = Mathf.Clamp(newYRotation + tempXRotation, -yRotationLimit, yRotationLimit);
+                transform.localRotation = Quaternion.Euler(newXRotation, newYRotation, 0f);
+                
             }
 
 
             /*
              * Set line render
              */
-            var x = lineRenderer.GetPosition(0);
+            //var x = lineRenderer.GetPosition(0);
             lineRenderer.SetPosition(1, lineRenderer.transform.forward * lineMaxDistance);
-            var y = lineRenderer.GetPosition(1);
+            //var y = lineRenderer.GetPosition(1);
             Debug.DrawLine(lineRenderer.GetPosition(0), lineRenderer.GetPosition(1), Color.red);
 
             /*
