@@ -7,17 +7,31 @@ namespace GN.ShooterAssessment
 {
     public class GameManager : MonoBehaviour
     {
+        public int maxPlayingScore = 10;
+        public List<GameView> gameViews = new List<GameView>();
+        public GameView currentGameView;
         public ConcreteSubject PlayerSubject;
         public UIObsever UiObserver;
-        public int maxPlayingScore = 10;
 
-        public static System.Action OnMaxScoreReached;
+        public static System.Action OnMaxScoreReached, OnStartGame, OnRestartGame;
 
         private void Start()
         {
             EnemyManager.OnEnemyDestroyed += IncreaseScoreByOne;
             OnMaxScoreReached += PlayerSubject.SetTotalTimeTaken;
+            OnMaxScoreReached += MoveToTheNextGameView;
+            OnStartGame += MoveToTheNextGameView;
             UiObserver.Init(PlayerSubject);
+            if (gameViews.Count > 0 )
+            {
+                foreach( var gameView in gameViews )
+                {
+                    gameView.TurnOff();
+                }
+
+                currentGameView = gameViews[0];
+                currentGameView.TurnOn();
+            }
         }
         private void Update()
         {
@@ -29,6 +43,15 @@ namespace GN.ShooterAssessment
             PlayerSubject.UpdateTime(Time.deltaTime);
         }
 
+        private void OnDestroy()
+        {
+
+            EnemyManager.OnEnemyDestroyed -= IncreaseScoreByOne;
+            OnMaxScoreReached -= PlayerSubject.SetTotalTimeTaken;
+            OnMaxScoreReached -= MoveToTheNextGameView;
+            OnStartGame -= MoveToTheNextGameView;
+        }
+
         void IncreaseScoreByOne()
         {
             PlayerSubject.SetScore(PlayerSubject.Score + 1);
@@ -38,6 +61,18 @@ namespace GN.ShooterAssessment
             }
         }
 
+        public void MoveToTheNextGameView()
+        {
+            if (currentGameView != null)
+            {                
+               currentGameView.SwitchNext();
+            }
+        }
+
+        public void StartTheShooting()
+        {
+            OnStartGame?.Invoke();
+        }
 
     }
 }
