@@ -6,5 +6,6 @@ namespace GN.ShooterAssessment
 {
     public class Enemy : MonoBehaviour
     {
+        public int LocationIndex =-1;
     }
 }

@@ -86,7 +86,7 @@ namespace GN.ShooterAssessment
                         if (hitInfo.collider.TryGetComponent<Enemy>(out Enemy enemy))
                         {
                             Debug.DrawLine(lineRenderer.GetPosition(0), lineRenderer.GetPosition(1));
-
+                            EnemyManager.DestroyEnemy.Invoke(enemy);
                         }
                         Debug.Log(hitInfo.collider.gameObject.name);
                     }
