@@ -14,7 +14,7 @@ namespace GN.ShooterAssessment {
         public List<int> OccupiedIndexes = new List<int>();
         public static int SpawnedEnemies = 0;
 
-        public static System.Action SpawnEnemy;
+        public static System.Action SpawnEnemy, OnEnemyDestroyed;
         public static System.Action<Enemy> DestroyEnemy;
 
         public void Start()
@@ -54,6 +54,7 @@ namespace GN.ShooterAssessment {
                 SpawnedEnemies--;
                 OccupiedIndexes.Remove(killedEnemy.LocationIndex);
                 Destroy(killedEnemy.gameObject);
+                OnEnemyDestroyed?.Invoke();
             }
 
         }
