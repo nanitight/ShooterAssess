@@ -1,22 +1,28 @@
-using GN.ShooterAssessment.ObserverPatter;
+using GN.ShooterAssessment.ObserverPattern;
 using GN.ShooterAssessment.ScriptTags;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace GN.ShooterAssessment
 {
+    /// <summary>
+    /// The Game Manager used to Control the flow of the game 
+    /// </summary>
     public class GameManager : MonoBehaviour
     {
-        public int maxPlayingScore = 10;
-        public List<GameView> gameViews = new List<GameView>();
-        public GameView currentGameView;
-        public ConcreteSubject PlayerSubject;
-        public UIObsever UiObserver;
+        [SerializeField] private int maxPlayingScore = 10;
+        [SerializeField] private List<GameView> gameViews = new List<GameView>();
+        [SerializeField] private GameView currentGameView;
+        private ConcreteSubject PlayerSubject;
+        [SerializeField]
+        private UIObsever UiObserver;
 
         public static System.Action OnMaxScoreReached, OnStartGame, OnRestartGame;
 
         private void Start()
         {
+            PlayerSubject = new ConcreteSubject();
+
             EnemyManager.OnEnemyDestroyed += IncreaseScoreByOne;
             OnMaxScoreReached += PlayerSubject.SetTotalTimeTaken;
             OnMaxScoreReached += MoveToTheNextGameView;
@@ -71,10 +77,15 @@ namespace GN.ShooterAssessment
             }
         }
 
+        //Referenced from Unity
         public void StartTheShooting()
         {
             OnStartGame?.Invoke();
         }
 
+        public void RestartTheGame()
+        {
+            OnRestartGame?.Invoke();
+        }
     }
 }

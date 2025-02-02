@@ -40,9 +40,8 @@ namespace GN.ShooterAssessment
             /*
              * If mouse input on rotate player to left or right, up or down.
              */
-            var mouseInputX = "MouseX";
 
-            Debug.Log($"X: {Input.GetAxis("Mouse X")}, Y: {Input.GetAxis("Mouse Y")}");
+            //Debug.Log($"X: {Input.GetAxis("Mouse X")}, Y: {Input.GetAxis("Mouse Y")}");
             if (Input.GetMouseButton(1))
             {
                 float mouseX = Input.GetAxis("Mouse X");
@@ -61,9 +60,9 @@ namespace GN.ShooterAssessment
             /*
              * Set line render
              */
-            //var x = lineRenderer.GetPosition(0);
+
             lineRenderer.SetPosition(1, lineRenderer.transform.forward * lineMaxDistance);
-            //var y = lineRenderer.GetPosition(1);
+       
             Debug.DrawLine(lineRenderer.GetPosition(0), lineRenderer.GetPosition(1), Color.red);
 
             /*
@@ -85,10 +84,10 @@ namespace GN.ShooterAssessment
                     {
                         if (hitInfo.collider.TryGetComponent<Enemy>(out Enemy enemy))
                         {
-                            Debug.DrawLine(lineRenderer.GetPosition(0), lineRenderer.GetPosition(1));
+                            //Debug.DrawLine(lineRenderer.GetPosition(0), lineRenderer.GetPosition(1));
                             EnemyManager.DestroyEnemy.Invoke(enemy);
                         }
-                        Debug.Log(hitInfo.collider.gameObject.name);
+                        //Debug.Log(hitInfo.collider.gameObject.name);
                     }
                 }
 

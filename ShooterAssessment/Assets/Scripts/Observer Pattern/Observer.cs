@@ -1,9 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
-namespace GN.ShooterAssessment.ObserverPatter {
-    public abstract class Observer //: MonoBehaviour
+namespace GN.ShooterAssessment.ObserverPattern {
+    /// <summary>
+    /// The Observer base class
+    /// </summary>
+    public abstract class Observer 
     {
         public abstract void Update();
     }

@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace GN.ShooterAssessment.ScriptTags
 {
+    /// <summary>
+    /// Game Views essentially define each screen. They have a reference to the next Game View.
+    /// </summary>
     public class GameView : MonoBehaviour
     {
         public GameView Next;

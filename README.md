@@ -16,7 +16,7 @@ The EnemyManager also defines an action for when the enemy is destroyed and an a
 for after the enemy is destroyed. 
 
 The **Player** script allows for player camera movement and changing the color of the 
-**Line Renderer** component. The Line Renderer is defined to use on 2 points. The *start* point of the straight line and the *end* point. On player movement, the end point of the line is adjusted to be *max distance* defined ahead(forward) of the player's view after 
+**Line Renderer** component. The Line Renderer is defined to use only 2 points. The *start* point of the straight line and the *end* point. On player movement, the end point of the line is adjusted to be *max distance* defined ahead(forward) of the player's view after 
 player movement. It also defines a timer for when you can shoot again after a previous shot.
 If the Physics raycast starting at the start of the line, going straight forward for a  *max distance* is used to get a **RayCastHit**, if the hit collider is of the **Enemy**, that enemy is destroyed using the defined action in **EnemyManager**. 
 
@@ -28,9 +28,11 @@ Given the problem being solved, there are certain events defined as constraints 
 ### Observer Design Pattern
 Given that the subject of the pattern can be defined as the player, the observers can be the UI corresponding to the player state, I used the Observer Design Pattern to keep the UI up to date with the subject context. 
 
-The subject (aka player) in the pattern only defines the score, a bool to determine if max score is reached and time taken to play. The Observer updates the score, time while playing, and time taken in total. 
+The subject (aka player) in the pattern only defines the score, a bool to determine if max score is reached and time taken to play. The Observer updates UI for the score, time while playing, and time taken in total. 
 
-The **GameManager** encapsulates both the observers and the subject. It invokes the subject to update time at each frame. On certain *actions*, it updates the score and checks for when maxScore is reached. It also defines functions used to update to do certain tasks on the *Actions* defined already. 
+*Classes used in this pattern are not **MonoBehaviours**.*
+
+The **GameManager** encapsulates both the observers and the subject. It invokes the subject to update time at each frame. On certain *actions*, it updates the score and checks for when maxScore is reached. It also defines functions used to do certain tasks on the *Actions* defined already. 
 
 ### Linked Lists
 Since the solution can restart and repeat with the same execution, I used linked lists to defined what the next "**GameView**" is. Each GameView defines what the next GameView will be and the last "GameView" can define the next as the very first **GameView**, essentially making a loop. 

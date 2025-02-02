@@ -1,9 +1,11 @@
 using System;
 using TMPro;
-using UnityEngine.UI;
 
-namespace GN.ShooterAssessment.ObserverPatter
+namespace GN.ShooterAssessment.ObserverPattern
 {
+    /// <summary>
+    /// The concrete Observer - specifically for UI.
+    /// </summary>
     [Serializable]
     public class UIObsever : Observer
     {

@@ -1,11 +1,12 @@
-using GN.ShooterAssessment.ObserverPatter;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
-namespace GN.ShooterAssessment.ObserverPatter
+using System.Collections.Generic;
+
+namespace GN.ShooterAssessment.ObserverPattern
 {
-    public abstract class Subject //: MonoBehaviour
+    /// <summary>
+    /// The Subject base class in the pattern
+    /// </summary>
+    public abstract class Subject 
     {
         private List<Observer> observers = new List<Observer>();
 

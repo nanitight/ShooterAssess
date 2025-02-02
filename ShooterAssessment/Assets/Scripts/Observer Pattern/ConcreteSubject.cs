@@ -3,8 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace GN.ShooterAssessment.ObserverPatter
+namespace GN.ShooterAssessment.ObserverPattern
 {
+    /// <summary>
+    /// The concrete Subject. The represents the main context of the game play.
+    /// </summary>
     [Serializable]
     public class ConcreteSubject : Subject
     {
